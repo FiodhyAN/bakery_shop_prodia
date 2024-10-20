@@ -117,10 +117,12 @@
                         contentType: false,
                         processData: false,
                         success: function(response) {
-                            if (response.needs_verification) {
-                                window.location.href = "{{ route('verification.notice') }}";
-                            } else {
+                            if (response.redirect == 'dashboard') {
                                 window.location.href = "{{ route('dashboard') }}";
+                            } else if (response.redirect == 'home') {
+                                window.location.href = "{{ route('home') }}";
+                            } else {
+                                window.location.href = "{{ route('verification.notice') }}";
                             }
                         },
                         error: function(xhr, status, error) {

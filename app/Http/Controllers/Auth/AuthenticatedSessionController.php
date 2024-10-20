@@ -29,14 +29,12 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 
         if (Auth::user()->email_verified_at === null) {
-            return response()->json([
-                'needs_verification' => true,
-            ]);
+            Auth::user()->user_role === 'customer' ? $redirect = 'verification.notice' : $redirect = 'dashboard';
         } else {
-            return response()->json([
-                'needs_verification' => false,
-            ]);
+            Auth::user()->user_role === 'customer' ? $redirect = 'home' : $redirect = 'dashboard';
         }
+
+        return response()->json(['redirect' => $redirect]);
     }
 
     /**

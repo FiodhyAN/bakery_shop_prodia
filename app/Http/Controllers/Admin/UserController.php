@@ -58,7 +58,6 @@ class UserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'user_role' => $request->user_role,
-            'email_verified_at' => now(),
             'password' => Hash::make($request->password),
         ]);
 
