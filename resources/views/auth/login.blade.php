@@ -1,5 +1,4 @@
 @extends('layouts.auth', ['title' => 'Login'])
-
 @section('content')
     <div class="auth-basic-wrapper d-flex align-items-center justify-content-center">
         <div class="container-fluid my-5 my-lg-0">
