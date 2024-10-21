@@ -18,6 +18,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->timestamp('email_verified_expired_at')->nullable();
             $table->enum('user_role', ['admin', 'finance', 'operation', 'customer'])->default('customer');
+            $table->integer('cart_count')->default(0);
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

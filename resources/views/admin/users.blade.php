@@ -146,5 +146,5 @@
         const editUserUrl = "{{ route('users.edit') }}";
         const updateUserUrl = "{{ route('users.update') }}";
     </script>
-    <script src="assets/js/users.js"></script>
+    <script src="/assets/js/users.js"></script>
 @endsection

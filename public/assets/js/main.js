@@ -6,9 +6,9 @@ $(function () {
 
   /* scrollar */
 
-  new PerfectScrollbar(".notify-list")
+  // new PerfectScrollbar(".notify-list")
 
-  new PerfectScrollbar(".search-content")
+  // new PerfectScrollbar(".search-content")
 
   // new PerfectScrollbar(".mega-menu-widgets")
 
@@ -63,6 +63,58 @@ $(function () {
         $('.top-header .navbar').addClass('sticky-header');
       } else {
         $('.top-header .navbar').removeClass('sticky-header');
+      }
+    });
+
+    if (session) {
+      Toastify({
+        text: message,
+        duration: 3000,
+        close: true,
+        backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+        className: "success",
+      }).showToast();
+    }
+    $('#product-modal-btn').on('click', function() {
+      $('#product-id').val($(this).data('product_id'));
+      $('#product-name').text($(this).data('product_name'));
+      $('#product-image').attr('src', $(this).data('product_image'));
+      $('#product-price').text($(this).data('product_formatted_price'));
+      $('#product-stock').text($(this).data('product_stock'));
+      $('#quantity-input').attr('max', $(this).data('product_stock'));
+      $('#quantity-input').val(1);
+      const price = $(this).data('product_price');
+      const formatted_price = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+      $('#total-order').text('Rp. ' + formatted_price);
+      if ($(this).data('product_stock') == 0) {
+        $('#quantity-input').hide();
+        $('#out-of-stock').show();
+      } else {
+        $('#quantity-input').show();
+        $('#out-of-stock').hide();
+      }
+    });
+
+    $('#plus-btn').on('click', function() {
+      let quantity = $('#quantity-input').val();
+      let max = $('#product-modal-btn').data('product_stock');
+      if (quantity < max) {
+        $('#quantity-input').val(parseInt(quantity) + 1);
+        const price = $('#product-modal-btn').data('product_price') * (parseInt(quantity) + 1);
+        var formatted_price = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        $('#total-price').val(price);
+        $('#total-order').text('Rp. ' + formatted_price);
+      }
+    });
+
+    $('#minus-btn').on('click', function() {
+      let quantity = $('#quantity-input').val();
+      if (quantity > 1) {
+        const price = $('#product-modal-btn').data('product_price') * (parseInt(quantity) - 1);
+        var formatted_price = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        $('#total-order').text('Rp. ' + formatted_price);
+        $('#total-price').val(price);
+        $('#quantity-input').val(parseInt(quantity) - 1);
       }
     });
   });
@@ -148,9 +200,6 @@ $(function () {
       return this.href == e
     }).addClass("").parent().addClass("mm-active"); o.is("li");) o = o.parent("").addClass("mm-show").parent("").addClass("mm-active")
   });
-
-
-
 });
 
 

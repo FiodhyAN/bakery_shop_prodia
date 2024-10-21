@@ -24,7 +24,7 @@ class Product extends Model
 
     public function getFormattedPriceAttribute()
     {
-        return 'Rp' . number_format($this->price, 0, ',', '.');
+        return 'Rp. ' . number_format($this->price, 0, ',', '.');
     }
 
     public function getFormattedStockAttribute()
@@ -40,5 +40,10 @@ class Product extends Model
     public function getShortDescriptionAttribute()
     {
         return Str::limit($this->description, 100, '...');
+    }
+
+    public function carts()
+    {
+        return $this->hasMany(Cart::class);
     }
 }

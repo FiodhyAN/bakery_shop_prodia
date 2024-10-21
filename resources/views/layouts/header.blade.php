@@ -123,7 +123,7 @@
                     <li class="nav-item d-md-flex d-none">
                         <a class="nav-link position-relative" data-bs-toggle="offcanvas" href="#offcanvasCart"><i
                                 class="material-icons-outlined">shopping_cart</i>
-                            <span class="badge-notify">8</span>
+                            <span class="badge-notify">{{ auth()->user()->cart_count }}</span>
                         </a>
                     </li>
                 @endif

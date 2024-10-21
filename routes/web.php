@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
@@ -38,6 +39,12 @@ Route::middleware('auth')->group(function () {
             Route::post('/update/{product}', [ProductController::class, 'update'])->name('products.update');
             Route::delete('/delete', [ProductController::class, 'destroy'])->name('products.delete');
         });
+    });
+
+    Route::group(['prefix' => 'carts'], function () {
+        Route::post('/store', [CartController::class, 'store'])->name('carts.store');
+        Route::get('/count', [CartController::class, 'getCartCount'])->name('carts.count');
+        Route::delete('/delete', [CartController::class, 'destroy'])->name('carts.delete');
     });
 });
 

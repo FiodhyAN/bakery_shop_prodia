@@ -58,5 +58,5 @@
         const indexUrl = "{{ route('products.index') }}";
         const deleteUrl = "{{ route('products.delete') }}";
     </script>
-    <script src="assets/js/products.js"></script>
+    <script src="/assets/js/products.js"></script>
 @endsection

@@ -27,7 +27,7 @@ $(document).ready(function() {
         processing: true,
         serverSide: true,
         ajax: {
-            url: '/users/get',
+            url: '/admin/users/get',
             type: 'GET'
         },
         columns: [

@@ -23,6 +23,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
         'email_verified_expired_at',
         'user_role',
+        'cart_count',
     ];
 
     /**
@@ -46,5 +47,10 @@ class User extends Authenticatable implements MustVerifyEmail
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function carts()
+    {
+        return $this->hasMany(Cart::class);
     }
 }
